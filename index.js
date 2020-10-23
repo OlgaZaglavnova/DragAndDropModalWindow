@@ -52,9 +52,18 @@ modalsOKbtn.addEventListener('click', (e) => {
         tmpDiv.id = i + "window";
         tmpDiv.className = "dynamicModal";
         tmpDiv.innerText = `Модальное окно №${i}`;
+        let tmpCloseDiv = document.createElement('div');
+        tmpCloseDiv.id = i +"close";
+        tmpCloseDiv.className = "closeModal";
+        tmpCloseDiv.innerText = "*";
         document.body.appendChild(tmpDiv);
-        document.getElementById(`${i}window`).style.top = 100*i + "px";
-        document.getElementById(`${i}window`).style.left = 100*i + "px";
+        tmpDiv.appendChild(tmpCloseDiv);
+        const iwin = document.getElementById(`${i}window`);
+        iwin.style.top = 100*i + "px";
+        iwin.style.left = 100*i + "px";
+        document.getElementById(`${i}close`).addEventListener('click', (e) => {
+            document.body.removeChild(iwin);
+        });
         console.log('created window #', i)
     }
 })
